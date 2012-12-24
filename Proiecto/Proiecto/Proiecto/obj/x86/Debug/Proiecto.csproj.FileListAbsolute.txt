@@ -1,0 +1,6 @@
+C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\bin\x86\Debug\Proiecto.exe
+C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\bin\x86\Debug\Proiecto.pdb
+C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\obj\x86\Debug\Proiecto.exe
+C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\obj\x86\Debug\Proiecto.pdb
