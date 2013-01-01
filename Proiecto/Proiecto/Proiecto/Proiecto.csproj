@@ -16,8 +16,8 @@
     <XnaProfile>HiDef</XnaProfile>
     <XnaCrossPlatformGroupID>e9a9b3e0-60c4-4795-b258-7f1e6eea329a</XnaCrossPlatformGroupID>
     <XnaOutputType>Game</XnaOutputType>
-    <ApplicationIcon>Game.ico</ApplicationIcon>
-    <Thumbnail>GameThumbnail.png</Thumbnail>
+    <ApplicationIcon>Proiecto.ico</ApplicationIcon>
+    <Thumbnail>Proiecto.png</Thumbnail>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -107,14 +107,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FPSCounter.cs" />
     <Compile Include="GraphicsEngine.cs" />
+    <Compile Include="LogicEngine.cs" />
+    <Compile Include="MouseBullet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Game.ico" />
-    <Content Include="GameThumbnail.png" />
+    <Content Include="Proiecto.ico" />
+    <Content Include="Proiecto.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProiectoContent\ProiectoContent.contentproj">

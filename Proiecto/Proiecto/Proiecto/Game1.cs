@@ -18,12 +18,18 @@ namespace Proiecto
             GraphicsEngine.Register(new GraphicsDeviceManager(this));
             //GraphicsEngine.ChangeResolution(1366, 768, false);
             Content.RootDirectory = "Content";
+            this.IsMouseVisible = true;
         }
 
         protected override void Initialize()
         {
             base.Initialize();
             GraphicsEngine.Initialize();
+            LogicEngine.Initialize();
+
+            new MouseBullet(new Vector2(10, 10));
+            new MouseBullet(new Vector2(100, 100));
+            new MouseBullet(new Vector2(500, 200));
         }
 
         protected override void LoadContent()
@@ -39,14 +45,17 @@ namespace Proiecto
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
+            FPSCounter.Update(gameTime);
+            this.Window.Title = FPSCounter.FrameRate.ToString();
+
+            LogicEngine.UpdateGame(gameTime);
 
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
+            FPSCounter.DrawCount();
             GraphicsEngine.DrawGame(gameTime);
 
             base.Draw(gameTime);

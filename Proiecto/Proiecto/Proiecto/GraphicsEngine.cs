@@ -20,6 +20,7 @@ namespace Proiecto
         static private LinkedList<Drawable> drawList;
         
         static public Texture2D texGameBackground;
+        static public Texture2D texCircle8x8;
 
         static public void Register(GraphicsDeviceManager GM)
         {
@@ -37,6 +38,7 @@ namespace Proiecto
             sb = new SpriteBatch(gd);
 
             texGameBackground = cm.Load<Texture2D>("GameBackground");
+            texCircle8x8 = cm.Load<Texture2D>("Circle8x8");
         }
 
         static public void ChangeResolution(int Width, int Height, bool FullscreenMode)
@@ -85,6 +87,11 @@ namespace Proiecto
         static public void Initialize()
         {
             drawList = new LinkedList<Drawable>();
+        }
+
+        static public void Add(Drawable drawable)
+        {
+            drawList.AddLast(drawable);
         }
     }
 
