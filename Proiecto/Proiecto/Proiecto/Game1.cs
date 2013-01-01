@@ -26,10 +26,7 @@ namespace Proiecto
             base.Initialize();
             GraphicsEngine.Initialize();
             LogicEngine.Initialize();
-
-            new MouseBullet(new Vector2(10, 10));
-            new MouseBullet(new Vector2(100, 100));
-            new MouseBullet(new Vector2(500, 200));
+            GraphicsEngine.ChangeResolution(600, 480, false);
         }
 
         protected override void LoadContent()
@@ -46,7 +43,16 @@ namespace Proiecto
         protected override void Update(GameTime gameTime)
         {
             FPSCounter.Update(gameTime);
-            this.Window.Title = FPSCounter.FrameRate.ToString();
+            this.Window.Title = FPSCounter.FrameRate.ToString() + " | " + GraphicsEngine.Count.ToString();
+
+            if (Mouse.GetState().RightButton == ButtonState.Pressed)
+            {
+                new MouseBullet(new Vector2(10, 10));
+                new MouseBullet(new Vector2(100, 100));
+                new MouseBullet(new Vector2(500, 200));
+                new MouseBullet(new Vector2(300, 400));
+                new MouseBullet(new Vector2(200, 300));
+            }
 
             LogicEngine.UpdateGame(gameTime);
 

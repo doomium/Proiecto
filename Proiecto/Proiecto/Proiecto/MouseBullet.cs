@@ -64,12 +64,12 @@ namespace Proiecto
 
         public void Update(GameTime gameTime)
         {
-            MouseState ms = Mouse.GetState();
-            Position.X = (Position.X*10 + ms.X) / 11;
-            Position.Y = (Position.Y*10 + ms.Y) / 11;
-            if (ms.LeftButton == ButtonState.Pressed)
+            //MouseState ms = Mouse.GetState();
+            //Position.X = (Position.X*10 + ms.X) / 11;
+            //Position.Y = (Position.Y*10 + ms.Y) / 11;
+            //if (ms.LeftButton == ButtonState.Pressed)
             {
-                RemoveMe = true;
+                //RemoveMe = true;
             }
         }
     }

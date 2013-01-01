@@ -18,27 +18,26 @@ namespace Proiecto
         static public void UpdateGame(GameTime gameTime)
         {
             LinkedListNode<Updateable> startNode = updateList.First;
-            if (startNode == null)
+            LinkedListNode<Updateable> nextNode = null;
+            if (startNode != null)
             {
-                goto skipUpdate;
+                bool endIt = false;
+                do
+                {
+                    if (startNode.Next == null)
+                        endIt = true;
+                    else
+                        nextNode = startNode.Next;
+                    if (startNode.Value.removeMe == false)
+                        startNode.Value.Update(gameTime);
+                    else
+                        updateList.Remove(startNode);
+                    if (endIt == true)
+                        break;
+                    startNode = nextNode;
+                }
+                while (true);
             }
-            bool endIt = false;
-            do
-            {
-                if (startNode.Next == null)
-                    endIt = true;
-                if (startNode.Value.removeMe == false)
-                    startNode.Value.Update(gameTime);
-                else
-                    updateList.Remove(startNode);
-                if (endIt == true)
-                    break;
-                startNode = startNode.Next;
-            }
-            while (true);
-
-        skipUpdate:
-            int i = 0;
         }
 
         static public void Initialize()

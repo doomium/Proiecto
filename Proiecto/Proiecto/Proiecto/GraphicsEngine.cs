@@ -22,6 +22,11 @@ namespace Proiecto
         static public Texture2D texGameBackground;
         static public Texture2D texCircle8x8;
 
+        static public int Count
+        {
+            get { return drawList.Count; }
+        }
+
         static public void Register(GraphicsDeviceManager GM)
         {
             gm = GM;
@@ -56,26 +61,26 @@ namespace Proiecto
             sb.Begin();
 
             LinkedListNode<Drawable> startNode = drawList.First;
-            if (startNode == null)
+            LinkedListNode<Drawable> nextNode = null;
+            if (startNode != null)
             {
-                goto skipDraw;
+                bool endIt = false;
+                do
+                {
+                    if (startNode.Next == null)
+                        endIt = true;
+                    else
+                        nextNode = startNode.Next;
+                    if (startNode.Value.removeMe == false)
+                        DrawObject(startNode.Value);
+                    else
+                        drawList.Remove(startNode);
+                    if (endIt == true)
+                        break;
+                    startNode = nextNode;
+                }
+                while (true);
             }
-            bool endIt = false;
-            do
-            {
-                if (startNode.Next == null)
-                    endIt = true;
-                if (startNode.Value.removeMe == false)
-                    DrawObject(startNode.Value);
-                else
-                    drawList.Remove(startNode);
-                if (endIt == true)
-                    break;
-                startNode = startNode.Next;
-            }
-            while (true);
-
-        skipDraw:
             sb.End();
         }
 
