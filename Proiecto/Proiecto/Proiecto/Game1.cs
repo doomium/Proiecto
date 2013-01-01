@@ -23,6 +23,7 @@ namespace Proiecto
         protected override void Initialize()
         {
             base.Initialize();
+            GraphicsEngine.Initialize();
         }
 
         protected override void LoadContent()

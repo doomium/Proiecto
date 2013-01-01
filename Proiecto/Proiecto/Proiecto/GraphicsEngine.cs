@@ -17,6 +17,9 @@ namespace Proiecto
         static private GraphicsDeviceManager gm;
         static private GraphicsDevice gd;
         static private ContentManager cm;
+        static private LinkedList<Drawable> drawList;
+        
+        static public Texture2D texGameBackground;
 
         static public void Register(GraphicsDeviceManager GM)
         {
@@ -32,6 +35,8 @@ namespace Proiecto
         {
             cm = CM;
             sb = new SpriteBatch(gd);
+
+            texGameBackground = cm.Load<Texture2D>("GameBackground");
         }
 
         static public void ChangeResolution(int Width, int Height, bool FullscreenMode)
@@ -45,16 +50,50 @@ namespace Proiecto
         static public void DrawGame(GameTime gameTime)
         {
             gd.Clear(Color.Black);
+
+            sb.Begin();
+
+            LinkedListNode<Drawable> startNode = drawList.First;
+            if (startNode == null)
+            {
+                goto skipDraw;
+            }
+            bool endIt = false;
+            do
+            {
+                if (startNode.Next == null)
+                    endIt = true;
+                if (startNode.Value.removeMe == false)
+                    DrawObject(startNode.Value);
+                else
+                    drawList.Remove(startNode);
+                if (endIt == true)
+                    break;
+                startNode = startNode.Next;
+            }
+            while (true);
+
+        skipDraw:
+            sb.End();
         }
 
         static private void DrawObject(Drawable obj)
         {
             sb.Draw(obj.drawTexture, obj.drawScreen, obj.drawSource, obj.drawColor, obj.drawRotation, obj.drawOrigin, SpriteEffects.None, obj.drawLayer);
         }
+
+        static public void Initialize()
+        {
+            drawList = new LinkedList<Drawable>();
+        }
     }
 
     interface Drawable
     {
+        bool removeMe
+        {
+            get;
+        }
         Texture2D drawTexture
         {
             get;
@@ -71,7 +110,7 @@ namespace Proiecto
         {
             get;
         }
-        Rectangle drawSource
+        Rectangle? drawSource
         {
             get;
         }
@@ -82,6 +121,55 @@ namespace Proiecto
         Vector2 drawOrigin
         {
             get;
+        }
+    }
+
+    class BasicSprite : Drawable
+    {
+        public BasicSprite(Rectangle drawRect)
+        {
+            RemoveMe = false;
+            DrawScreen = drawRect;
+        }
+
+        public void Kill()
+        {
+            RemoveMe = true;
+        }
+
+        private bool RemoveMe;
+        public bool removeMe
+        {
+            get { return RemoveMe; }
+        }
+        public Texture2D drawTexture
+        {
+            get { return GraphicsEngine.texGameBackground; }
+        }
+        public Color drawColor
+        {
+            get { return Color.White; }
+        }
+        public float drawRotation
+        {
+            get { return 0.0f; }
+        }
+        private Rectangle DrawScreen;
+        public Rectangle drawScreen
+        {
+            get { return DrawScreen; }
+        }
+        public Rectangle? drawSource
+        {
+            get { return null; }
+        }
+        public float drawLayer
+        {
+            get { return 0.0f; }
+        }
+        public Vector2 drawOrigin
+        {
+            get { return Vector2.Zero; }
         }
     }
 }
