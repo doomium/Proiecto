@@ -37,7 +37,7 @@ namespace Proiecto
 
         public Color drawColor
         {
-            get { return Color.Red; }
+            get { return Color.DarkOrchid; }
         }
 
         public float drawRotation

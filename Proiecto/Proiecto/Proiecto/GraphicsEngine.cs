@@ -58,7 +58,7 @@ namespace Proiecto
         {
             gd.Clear(Color.Black);
 
-            sb.Begin();
+            sb.Begin(SpriteSortMode.Deferred, BlendState.Additive);
 
             LinkedListNode<Drawable> startNode = drawList.First;
             LinkedListNode<Drawable> nextNode = null;
