@@ -45,6 +45,9 @@ namespace Proiecto
             FPSCounter.Update(gameTime);
             this.Window.Title = FPSCounter.FrameRate.ToString() + " | " + GraphicsEngine.Count.ToString();
 
+            InputEngine.UpdateInputMouse();
+            InputEngine.UpdateInputKeyboard();
+
             if (Mouse.GetState().RightButton == ButtonState.Pressed)
             {
                 new MouseBullet(new Vector2(10, 10));
@@ -52,9 +55,28 @@ namespace Proiecto
                 new MouseBullet(new Vector2(500, 200));
                 new MouseBullet(new Vector2(300, 400));
                 new MouseBullet(new Vector2(200, 300));
+
+                new MouseBullet(new Vector2(10, 10));
+                new MouseBullet(new Vector2(100, 100));
+                new MouseBullet(new Vector2(500, 200));
+                new MouseBullet(new Vector2(300, 400));
+                new MouseBullet(new Vector2(200, 300));
+
+                new MouseBullet(new Vector2(10, 10));
+                new MouseBullet(new Vector2(100, 100));
+                new MouseBullet(new Vector2(500, 200));
+                new MouseBullet(new Vector2(300, 400));
+                new MouseBullet(new Vector2(200, 300));
+
+                new MouseBullet(new Vector2(10, 10));
+                new MouseBullet(new Vector2(100, 100));
+                new MouseBullet(new Vector2(500, 200));
+                new MouseBullet(new Vector2(300, 400));
+                new MouseBullet(new Vector2(200, 300));
             }
 
-            LogicEngine.UpdateGame(gameTime);
+            LogicEngine.UpdateEntities(gameTime);
+            LogicEngine.UpdateParticles(gameTime);
 
             base.Update(gameTime);
         }

@@ -13,41 +13,55 @@ namespace Proiecto
 {
     static class LogicEngine
     {
-        static private LinkedList<Updateable> updateList;
+        static private List<Updateable> updatePList;
+        static private List<Entity> updateEList;
 
-        static public void UpdateGame(GameTime gameTime)
+        public enum EntityType
         {
-            LinkedListNode<Updateable> startNode = updateList.First;
-            LinkedListNode<Updateable> nextNode = null;
-            if (startNode != null)
+            PlayerBullet,
+            EnemyBullet,
+            Player,
+            Enemy
+        }
+
+        static public void UpdateEntities(GameTime gameTime)
+        {
+            List<Entity> tempList = new List<Entity>(updateEList.Count);
+            foreach (Entity entity in updateEList)
             {
-                bool endIt = false;
-                do
-                {
-                    if (startNode.Next == null)
-                        endIt = true;
-                    else
-                        nextNode = startNode.Next;
-                    if (startNode.Value.removeMe == false)
-                        startNode.Value.Update(gameTime);
-                    else
-                        updateList.Remove(startNode);
-                    if (endIt == true)
-                        break;
-                    startNode = nextNode;
-                }
-                while (true);
+                entity.Update(gameTime);
+                if (!entity.removeMe)
+                    tempList.Add(entity);
             }
+            updateEList = tempList;
+        }
+
+        static public void UpdateParticles(GameTime gameTime)
+        {
+            List<Updateable> tempList = new List<Updateable>(updatePList.Count);
+            foreach (Updateable updateable in updatePList)
+            {
+                updateable.Update(gameTime);
+                if (!updateable.removeMe)
+                    tempList.Add(updateable);
+            }
+            updatePList = tempList;
         }
 
         static public void Initialize()
         {
-            updateList = new LinkedList<Updateable>();
+            updatePList = new List<Updateable>();
+            updateEList = new List<Entity>();
         }
 
-        static public void Add(Updateable updateable)
+        static public void AddParticle(Updateable updateable)
         {
-            updateList.AddLast(updateable);
+            updatePList.Add(updateable);
+        }
+
+        static public void AddEntity(Entity entity)
+        {
+            updateEList.Add(entity);
         }
     }
 
@@ -58,5 +72,23 @@ namespace Proiecto
             get;
         }
         void Update(GameTime gameTime);
+    }
+
+    interface Entity : Updateable
+    {
+        int radius
+        {
+            get;
+        }
+
+        Vector2 position
+        {
+            get;
+        }
+
+        LogicEngine.EntityType entityType
+        {
+            get;
+        }
     }
 }

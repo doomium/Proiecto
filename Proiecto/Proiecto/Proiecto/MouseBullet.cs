@@ -11,13 +11,16 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Proiecto
 {
-    class MouseBullet : Drawable, Updateable
+    class MouseBullet : Drawable, Entity
     {
+        public Vector2 direction;
+        public bool good = false;
         public MouseBullet(Vector2 position)
         {
             Position = position;
             GraphicsEngine.Add(this);
-            LogicEngine.Add(this);
+            LogicEngine.AddEntity(this);
+            direction = new Vector2(((float)MathEngine.rng.NextDouble() * 2) - 1, ((float)MathEngine.rng.NextDouble() * 2) - 1);
         }
 
         private Vector2 Position;
@@ -57,20 +60,45 @@ namespace Proiecto
             get { return 0.0f; }
         }
 
+        private Vector2 DrawOrigin = new Vector2(4, 4);
         public Vector2 drawOrigin
         {
-            get { return Vector2.Zero; }
+            get { return DrawOrigin; }
         }
 
         public void Update(GameTime gameTime)
         {
-            //MouseState ms = Mouse.GetState();
-            //Position.X = (Position.X*10 + ms.X) / 11;
-            //Position.Y = (Position.Y*10 + ms.Y) / 11;
-            //if (ms.LeftButton == ButtonState.Pressed)
+            if (InputEngine.ms.LeftButton == ButtonState.Released)
             {
-                //RemoveMe = true;
+                int dist = (int)(((InputEngine.ms.X - Position.X) * (InputEngine.ms.X - Position.X)) + ((InputEngine.ms.Y - Position.Y) * (InputEngine.ms.Y - Position.Y)));
+                if (!good)
+                    direction = new Vector2(((float)MathEngine.rng.NextDouble() * 2) - 1, ((float)MathEngine.rng.NextDouble() * 2) - 1);
+                Position += direction;
+                int newdist = (int)(((InputEngine.ms.X - Position.X) * (InputEngine.ms.X - Position.X)) + ((InputEngine.ms.Y - Position.Y) * (InputEngine.ms.Y - Position.Y)));
+                if (dist > newdist)
+                    good = true;
+                else
+                    good = false;
             }
+            else
+            {
+                RemoveMe = true;
+            }
+        }
+
+        public int radius
+        {
+            get { return 4; }
+        }
+
+        public Vector2 position
+        {
+            get { return Position; }
+        }
+
+        public LogicEngine.EntityType entityType
+        {
+            get { return LogicEngine.EntityType.PlayerBullet; }
         }
     }
 }
