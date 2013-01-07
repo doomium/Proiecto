@@ -35,9 +35,10 @@ namespace Proiecto
             get { return GraphicsEngine.texCircle8x8; }
         }
 
+        Color DrawColor = Color.DarkMagenta;
         public Color drawColor
         {
-            get { return Color.DarkOrchid; }
+            get { return DrawColor; }
         }
 
         public float drawRotation
@@ -70,15 +71,24 @@ namespace Proiecto
         {
             if (InputEngine.ms.LeftButton == ButtonState.Released)
             {
-                int dist = (int)(((InputEngine.ms.X - Position.X) * (InputEngine.ms.X - Position.X)) + ((InputEngine.ms.Y - Position.Y) * (InputEngine.ms.Y - Position.Y)));
+                float dist = MathEngine.Distance2(new Vector2(InputEngine.ms.X, InputEngine.ms.Y), Position);
                 if (!good)
                     direction = new Vector2(((float)MathEngine.rng.NextDouble() * 2) - 1, ((float)MathEngine.rng.NextDouble() * 2) - 1);
                 Position += direction;
-                int newdist = (int)(((InputEngine.ms.X - Position.X) * (InputEngine.ms.X - Position.X)) + ((InputEngine.ms.Y - Position.Y) * (InputEngine.ms.Y - Position.Y)));
+                float newdist = MathEngine.Distance2(new Vector2(InputEngine.ms.X, InputEngine.ms.Y), Position); 
                 if (dist > newdist)
                     good = true;
                 else
                     good = false;
+
+                if (LogicEngine.CheckCollisionList(this, LogicEngine.EntityType.PlayerBullet).Count > 0)
+                {
+                    DrawColor = Color.DarkSlateBlue;
+                }
+                else
+                {
+                    DrawColor = Color.Red;
+                }
             }
             else
             {

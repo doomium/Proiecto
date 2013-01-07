@@ -37,44 +37,21 @@ namespace Proiecto
 
         protected override void UnloadContent()
         {
-
         }
 
         protected override void Update(GameTime gameTime)
         {
             FPSCounter.Update(gameTime);
-            this.Window.Title = FPSCounter.FrameRate.ToString() + " | " + GraphicsEngine.Count.ToString();
 
             InputEngine.UpdateInputMouse();
             InputEngine.UpdateInputKeyboard();
 
-            if (Mouse.GetState().RightButton == ButtonState.Pressed)
+            this.Window.Title = FPSCounter.FrameRate.ToString() + " | " + (GraphicsEngine.Count).ToString();
+
+            if (FPSCounter.FrameRate == 60)
             {
-                new MouseBullet(new Vector2(10, 10));
-                new MouseBullet(new Vector2(100, 100));
-                new MouseBullet(new Vector2(500, 200));
-                new MouseBullet(new Vector2(300, 400));
-                new MouseBullet(new Vector2(200, 300));
-
-                new MouseBullet(new Vector2(10, 10));
-                new MouseBullet(new Vector2(100, 100));
-                new MouseBullet(new Vector2(500, 200));
-                new MouseBullet(new Vector2(300, 400));
-                new MouseBullet(new Vector2(200, 300));
-
-                new MouseBullet(new Vector2(10, 10));
-                new MouseBullet(new Vector2(100, 100));
-                new MouseBullet(new Vector2(500, 200));
-                new MouseBullet(new Vector2(300, 400));
-                new MouseBullet(new Vector2(200, 300));
-
-                new MouseBullet(new Vector2(10, 10));
-                new MouseBullet(new Vector2(100, 100));
-                new MouseBullet(new Vector2(500, 200));
-                new MouseBullet(new Vector2(300, 400));
-                new MouseBullet(new Vector2(200, 300));
+                new MouseBullet(new Vector2(MathEngine.rng.Next(600), MathEngine.rng.Next(480)));
             }
-
             LogicEngine.UpdateEntities(gameTime);
             LogicEngine.UpdateParticles(gameTime);
 

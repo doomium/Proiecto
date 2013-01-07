@@ -29,9 +29,11 @@ namespace Proiecto
             List<Entity> tempList = new List<Entity>(updateEList.Count);
             foreach (Entity entity in updateEList)
             {
-                entity.Update(gameTime);
                 if (!entity.removeMe)
+                {
                     tempList.Add(entity);
+                    entity.Update(gameTime);
+                }
             }
             updateEList = tempList;
         }
@@ -41,9 +43,11 @@ namespace Proiecto
             List<Updateable> tempList = new List<Updateable>(updatePList.Count);
             foreach (Updateable updateable in updatePList)
             {
-                updateable.Update(gameTime);
                 if (!updateable.removeMe)
+                {
                     tempList.Add(updateable);
+                    updateable.Update(gameTime);
+                }
             }
             updatePList = tempList;
         }
@@ -62,6 +66,31 @@ namespace Proiecto
         static public void AddEntity(Entity entity)
         {
             updateEList.Add(entity);
+        }
+
+        static public List<Entity> CheckCollisionList(Entity entity, EntityType entityType)
+        {
+            List<Entity> collisionList = new List<Entity>();
+
+            foreach (Entity e in updateEList)
+                if (e.entityType == entityType)
+                    if (e != entity)
+                        if (MathEngine.CircleCollision(e.radius, entity.radius, e.position, entity.position))
+                            collisionList.Add(e);
+
+            return collisionList;
+        }
+
+        static public bool CheckCollision(Entity entity, EntityType entityType)
+        {
+
+            foreach (Entity e in updateEList)
+                if (e.entityType == entityType)
+                    if (e != entity)
+                        if (MathEngine.CircleCollision(e.radius, entity.radius, e.position, entity.position))
+                            return true;
+
+            return false;
         }
     }
 
