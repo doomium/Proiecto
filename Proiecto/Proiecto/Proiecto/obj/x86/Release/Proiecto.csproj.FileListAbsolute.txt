@@ -1,0 +1,8 @@
+C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\bin\x86\Release\Content\GameBackground.xnb
+C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\bin\x86\Release\Content\Circle8x8.xnb
+C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\bin\x86\Release\Proiecto.exe
+C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\bin\x86\Release\Proiecto.pdb
+C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\obj\x86\Release\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\obj\x86\Release\Proiecto.exe
+C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\obj\x86\Release\Proiecto.pdb
