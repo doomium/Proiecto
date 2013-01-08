@@ -35,7 +35,7 @@ namespace Proiecto
             get { return GraphicsEngine.texCircle8x8; }
         }
 
-        Color DrawColor = Color.DarkMagenta;
+        Color DrawColor = Color.Firebrick;
         public Color drawColor
         {
             get { return DrawColor; }
@@ -75,20 +75,11 @@ namespace Proiecto
                 if (!good)
                     direction = new Vector2(((float)MathEngine.rng.NextDouble() * 2) - 1, ((float)MathEngine.rng.NextDouble() * 2) - 1);
                 Position += direction;
-                float newdist = MathEngine.Distance2(new Vector2(InputEngine.ms.X, InputEngine.ms.Y), Position); 
+                float newdist = MathEngine.Distance2(new Vector2(InputEngine.ms.X, InputEngine.ms.Y), Position);
                 if (dist > newdist)
                     good = true;
                 else
                     good = false;
-
-                if (LogicEngine.CheckCollisionList(this, LogicEngine.EntityType.PlayerBullet).Count > 0)
-                {
-                    DrawColor = Color.DarkSlateBlue;
-                }
-                else
-                {
-                    DrawColor = Color.Red;
-                }
             }
             else
             {

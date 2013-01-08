@@ -19,6 +19,15 @@
       <Output>C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\bin\x86\Debug\Content\Circle8x8.xnb</Output>
       <Time>2013-01-01T14:25:55.9868698-05:00</Time>
     </Item>
+    <Item>
+      <Source>Square8x8.png</Source>
+      <Name>Square8x8</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\bin\x86\Debug\Content\Square8x8.xnb</Output>
+      <Time>2013-01-07T20:58:32.7025472-05:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

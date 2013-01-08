@@ -21,6 +21,9 @@ namespace Proiecto
         
         static public Texture2D texGameBackground;
         static public Texture2D texCircle8x8;
+        static public Texture2D texSquare8x8;
+
+        static public RenderTarget2D rtGameArea;
 
         static public int Count
         {
@@ -44,6 +47,9 @@ namespace Proiecto
 
             texGameBackground = cm.Load<Texture2D>("GameBackground");
             texCircle8x8 = cm.Load<Texture2D>("Circle8x8");
+            texSquare8x8 = cm.Load<Texture2D>("Square8x8");
+
+            rtGameArea = new RenderTarget2D(gd, 370, 460);
         }
 
         static public void ChangeResolution(int Width, int Height, bool FullscreenMode)
@@ -56,6 +62,8 @@ namespace Proiecto
 
         static public void DrawGame(GameTime gameTime)
         {
+            gd.SetRenderTarget(rtGameArea);
+
             gd.Clear(Color.Black);
 
             sb.Begin(SpriteSortMode.Deferred, BlendState.Additive);
@@ -81,6 +89,15 @@ namespace Proiecto
                 }
                 while (true);
             }
+            sb.End();
+
+            gd.SetRenderTarget(null);
+
+            gd.Clear(Color.Black);
+
+            sb.Begin();
+            sb.Draw(texGameBackground, Vector2.Zero, Color.MediumSlateBlue);
+            sb.Draw(rtGameArea, new Vector2(10, 10), Color.White);
             sb.End();
         }
 
