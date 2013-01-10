@@ -28,6 +28,33 @@
       <Output>C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\bin\x86\Debug\Content\Square8x8.xnb</Output>
       <Time>2013-01-07T20:58:32.7025472-05:00</Time>
     </Item>
+    <Item>
+      <Source>Triangle8x8.png</Source>
+      <Name>Triangle8x8</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\bin\x86\Debug\Content\Triangle8x8.xnb</Output>
+      <Time>2013-01-10T14:00:32.9767127-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Circle6x6.png</Source>
+      <Name>Circle6x6</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\bin\x86\Debug\Content\Circle6x6.xnb</Output>
+      <Time>2013-01-10T14:11:37.6237283-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Debris16x16.png</Source>
+      <Name>Debris16x16</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\bin\x86\Debug\Content\Debris16x16.xnb</Output>
+      <Time>2013-01-10T14:38:34.0241811-05:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

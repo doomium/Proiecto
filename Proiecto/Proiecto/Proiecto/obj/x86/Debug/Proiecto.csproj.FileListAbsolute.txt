@@ -7,3 +7,6 @@ C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\obj\x86\Debu
 C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\bin\x86\Debug\Content\GameBackground.xnb
 C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\bin\x86\Debug\Content\Circle8x8.xnb
 C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\bin\x86\Debug\Content\Square8x8.xnb
+C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\bin\x86\Debug\Content\Triangle8x8.xnb
+C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\bin\x86\Debug\Content\Circle6x6.xnb
+C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\bin\x86\Debug\Content\Debris16x16.xnb

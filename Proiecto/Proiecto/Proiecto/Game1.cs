@@ -13,6 +13,8 @@ namespace Proiecto
 {
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        float counter = 0;
+
         public Game1()
         {
             GraphicsEngine.Register(new GraphicsDeviceManager(this));
@@ -27,6 +29,7 @@ namespace Proiecto
             GraphicsEngine.Initialize();
             LogicEngine.Initialize();
             GraphicsEngine.ChangeResolution(600, 480, false);
+            new PlayerShip(new Vector2(185, 400));
         }
 
         protected override void LoadContent()
@@ -48,10 +51,11 @@ namespace Proiecto
 
             this.Window.Title = FPSCounter.FrameRate.ToString() + " | " + (GraphicsEngine.Count).ToString();
 
-            if (FPSCounter.FrameRate == 60)
-            {
-                new MouseBullet(new Vector2(MathEngine.rng.Next(600), MathEngine.rng.Next(480)));
-            }
+            counter += 1;
+            counter = counter % 10;
+            if (counter == 0)
+                new EnemySmallDebris(new Vector2(MathEngine.rng.Next(370),0));
+
             LogicEngine.UpdateEntities(gameTime);
             LogicEngine.UpdateParticles(gameTime);
 

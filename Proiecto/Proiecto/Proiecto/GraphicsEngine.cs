@@ -17,11 +17,15 @@ namespace Proiecto
         static private GraphicsDeviceManager gm;
         static private GraphicsDevice gd;
         static private ContentManager cm;
+
         static private LinkedList<Drawable> drawList;
         
         static public Texture2D texGameBackground;
         static public Texture2D texCircle8x8;
+        static public Texture2D texCircle6x6;
         static public Texture2D texSquare8x8;
+        static public Texture2D texTriangle8x8;
+        static public Texture2D texDebris16x16;
 
         static public RenderTarget2D rtGameArea;
 
@@ -47,7 +51,10 @@ namespace Proiecto
 
             texGameBackground = cm.Load<Texture2D>("GameBackground");
             texCircle8x8 = cm.Load<Texture2D>("Circle8x8");
+            texCircle6x6 = cm.Load<Texture2D>("Circle6x6");
             texSquare8x8 = cm.Load<Texture2D>("Square8x8");
+            texTriangle8x8 = cm.Load<Texture2D>("Triangle8x8");
+            texDebris16x16 = cm.Load<Texture2D>("Debris16x16");
 
             rtGameArea = new RenderTarget2D(gd, 370, 460);
         }
@@ -66,7 +73,7 @@ namespace Proiecto
 
             gd.Clear(Color.Black);
 
-            sb.Begin(SpriteSortMode.Deferred, BlendState.Additive);
+            sb.Begin();
 
             LinkedListNode<Drawable> startNode = drawList.First;
             LinkedListNode<Drawable> nextNode = null;
@@ -103,7 +110,7 @@ namespace Proiecto
 
         static private void DrawObject(Drawable obj)
         {
-            sb.Draw(obj.drawTexture, obj.drawScreen, obj.drawSource, obj.drawColor, obj.drawRotation, obj.drawOrigin, SpriteEffects.None, obj.drawLayer);
+            sb.Draw(obj.drawTexture, obj.position, obj.drawSource, obj.drawColor, obj.drawRotation, obj.drawOrigin,1f, SpriteEffects.None, obj.drawLayer);
         }
 
         static public void Initialize()
@@ -135,7 +142,7 @@ namespace Proiecto
         {
             get;
         }
-        Rectangle drawScreen
+        Vector2 position
         {
             get;
         }
@@ -150,55 +157,6 @@ namespace Proiecto
         Vector2 drawOrigin
         {
             get;
-        }
-    }
-
-    class BasicSprite : Drawable
-    {
-        public BasicSprite(Rectangle drawRect)
-        {
-            RemoveMe = false;
-            DrawScreen = drawRect;
-        }
-
-        public void Kill()
-        {
-            RemoveMe = true;
-        }
-
-        private bool RemoveMe;
-        public bool removeMe
-        {
-            get { return RemoveMe; }
-        }
-        public Texture2D drawTexture
-        {
-            get { return GraphicsEngine.texGameBackground; }
-        }
-        public Color drawColor
-        {
-            get { return Color.White; }
-        }
-        public float drawRotation
-        {
-            get { return 0.0f; }
-        }
-        private Rectangle DrawScreen;
-        public Rectangle drawScreen
-        {
-            get { return DrawScreen; }
-        }
-        public Rectangle? drawSource
-        {
-            get { return null; }
-        }
-        public float drawLayer
-        {
-            get { return 0.0f; }
-        }
-        public Vector2 drawOrigin
-        {
-            get { return Vector2.Zero; }
         }
     }
 }

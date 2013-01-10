@@ -16,6 +16,9 @@ namespace Proiecto
         static private List<Updateable> updatePList;
         static private List<Entity> updateEList;
 
+        static private List<Updateable> updatePAdd;
+        static private List<Entity> updateEAdd;
+
         public enum EntityType
         {
             PlayerBullet,
@@ -26,6 +29,11 @@ namespace Proiecto
 
         static public void UpdateEntities(GameTime gameTime)
         {
+            foreach (Entity entity in updateEAdd)
+            {
+                updateEList.Add(entity);
+            }
+            updateEAdd.Clear();
             List<Entity> tempList = new List<Entity>(updateEList.Count);
             foreach (Entity entity in updateEList)
             {
@@ -40,6 +48,11 @@ namespace Proiecto
 
         static public void UpdateParticles(GameTime gameTime)
         {
+            foreach (Updateable updateable in updatePAdd)
+            {
+                updatePList.Add(updateable);
+            }
+            updatePAdd.Clear();
             List<Updateable> tempList = new List<Updateable>(updatePList.Count);
             foreach (Updateable updateable in updatePList)
             {
@@ -56,16 +69,19 @@ namespace Proiecto
         {
             updatePList = new List<Updateable>();
             updateEList = new List<Entity>();
+
+            updatePAdd = new List<Updateable>();
+            updateEAdd = new List<Entity>();
         }
 
         static public void AddParticle(Updateable updateable)
         {
-            updatePList.Add(updateable);
+            updatePAdd.Add(updateable);
         }
 
         static public void AddEntity(Entity entity)
         {
-            updateEList.Add(entity);
+            updateEAdd.Add(entity);
         }
 
         static public List<Entity> CheckCollisionList(Entity entity, EntityType entityType)
@@ -81,16 +97,15 @@ namespace Proiecto
             return collisionList;
         }
 
-        static public bool CheckCollision(Entity entity, EntityType entityType)
+        static public Entity CheckCollision(Entity entity, EntityType entityType)
         {
 
             foreach (Entity e in updateEList)
                 if (e.entityType == entityType)
                     if (e != entity)
                         if (MathEngine.CircleCollision(e.radius, entity.radius, e.position, entity.position))
-                            return true;
-
-            return false;
+                            return e;
+            return null;
         }
     }
 
@@ -118,6 +133,12 @@ namespace Proiecto
         LogicEngine.EntityType entityType
         {
             get;
+        }
+
+        int health
+        {
+            get;
+            set;
         }
     }
 }
