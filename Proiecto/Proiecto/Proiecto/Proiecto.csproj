@@ -109,6 +109,7 @@
   <ItemGroup>
     <Compile Include="EnemySmallDebris.cs" />
     <Compile Include="FPSCounter.cs" />
+    <Compile Include="HUD.cs" />
     <Compile Include="PlayerBullet.cs" />
     <Compile Include="PlayerShip.cs" />
     <Compile Include="GraphicsEngine.cs" />

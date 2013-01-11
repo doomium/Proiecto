@@ -28,7 +28,7 @@ namespace Proiecto
             base.Initialize();
             GraphicsEngine.Initialize();
             LogicEngine.Initialize();
-            GraphicsEngine.ChangeResolution(600, 480, false);
+            GraphicsEngine.ChangeResolution(640, 480, false);
             new PlayerShip(new Vector2(185, 400));
         }
 
@@ -48,6 +48,8 @@ namespace Proiecto
 
             InputEngine.UpdateInputMouse();
             InputEngine.UpdateInputKeyboard();
+
+            HUD.Score++;
 
             this.Window.Title = FPSCounter.FrameRate.ToString() + " | " + (GraphicsEngine.Count).ToString();
 

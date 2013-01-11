@@ -27,6 +27,8 @@ namespace Proiecto
         static public Texture2D texTriangle8x8;
         static public Texture2D texDebris16x16;
 
+        static public SpriteFont fontHUD;
+
         static public RenderTarget2D rtGameArea;
 
         static public int Count
@@ -55,6 +57,8 @@ namespace Proiecto
             texSquare8x8 = cm.Load<Texture2D>("Square8x8");
             texTriangle8x8 = cm.Load<Texture2D>("Triangle8x8");
             texDebris16x16 = cm.Load<Texture2D>("Debris16x16");
+
+            fontHUD = cm.Load<SpriteFont>("fontHUD");
 
             rtGameArea = new RenderTarget2D(gd, 370, 460);
         }
@@ -105,9 +109,18 @@ namespace Proiecto
             sb.Begin();
             sb.Draw(texGameBackground, Vector2.Zero, Color.MediumSlateBlue);
             sb.Draw(rtGameArea, new Vector2(10, 10), Color.White);
+            DrawHUDString("Score:" + HUD.Score.ToString(), new Vector2(515, 140),Color.SlateBlue, Color.Black);
+            DrawHUDString("Lives:" + HUD.Lives.ToString(), new Vector2(515, 200), Color.SlateBlue, Color.Black);
+            DrawHUDString("Graze:" + HUD.Graze.ToString(), new Vector2(515, 260), Color.SlateBlue, Color.Black);
+            DrawHUDString("Power:" + HUD.Power.ToString(), new Vector2(515, 320), Color.SlateBlue, Color.Black);
             sb.End();
         }
 
+        static private void DrawHUDString(string str, Vector2 position, Color color,  Color shadow)
+        {
+            sb.DrawString(fontHUD, str, position + new Vector2(1), shadow, 0.0f, new Vector2(fontHUD.MeasureString(str).X / 2, 7), 1f, SpriteEffects.None, 1);
+            sb.DrawString(fontHUD, str, position, color, 0.0f, new Vector2(fontHUD.MeasureString(str).X / 2, 7), 1f, SpriteEffects.None, 1);
+        }
         static private void DrawObject(Drawable obj)
         {
             sb.Draw(obj.drawTexture, obj.position, obj.drawSource, obj.drawColor, obj.drawRotation, obj.drawOrigin,1f, SpriteEffects.None, obj.drawLayer);

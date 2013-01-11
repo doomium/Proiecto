@@ -55,6 +55,42 @@
       <Output>C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\bin\x86\Debug\Content\Debris16x16.xnb</Output>
       <Time>2013-01-10T14:38:34.0241811-05:00</Time>
     </Item>
+    <Item>
+      <Source>fontHUD.spritefont</Source>
+      <Name>fontHUD</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\bin\x86\Debug\Content\fontHUD.xnb</Output>
+      <Time>2013-01-11T13:12:56.69414-05:00</Time>
+    </Item>
+    <Item>
+      <Source>PowerUpL16x16.png</Source>
+      <Name>PowerUpL16x16</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\bin\x86\Debug\Content\PowerUpL16x16.xnb</Output>
+      <Time>2013-01-11T13:31:42.3815256-05:00</Time>
+    </Item>
+    <Item>
+      <Source>PowerUpP16x16.png</Source>
+      <Name>PowerUpP16x16</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\bin\x86\Debug\Content\PowerUpP16x16.xnb</Output>
+      <Time>2013-01-11T13:31:42.3785254-05:00</Time>
+    </Item>
+    <Item>
+      <Source>PowerUpS16x16.png</Source>
+      <Name>PowerUpS16x16</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Owner\Documents\GitHub\Proiecto\Proiecto\Proiecto\Proiecto\bin\x86\Debug\Content\PowerUpS16x16.xnb</Output>
+      <Time>2013-01-11T13:31:42.3755253-05:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

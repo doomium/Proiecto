@@ -43,6 +43,7 @@ namespace Proiecto
         public void Update(GameTime gameTime)
         {
             Position.Y += 4;
+            DrawRotation += 0.06f;
             if (Position.Y >= 500 || Health <= 0)
                 RemoveMe = true;
         }
@@ -76,7 +77,7 @@ namespace Proiecto
 
         public Vector2 drawOrigin
         {
-            get { return new Vector2(8); }
+            get { return new Vector2(7.5f); }
         }
 
         private int Health = 10;

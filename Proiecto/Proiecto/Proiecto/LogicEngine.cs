@@ -24,7 +24,8 @@ namespace Proiecto
             PlayerBullet,
             EnemyBullet,
             Player,
-            Enemy
+            Enemy,
+            PowerUp
         }
 
         static public void UpdateEntities(GameTime gameTime)
@@ -91,7 +92,7 @@ namespace Proiecto
             foreach (Entity e in updateEList)
                 if (e.entityType == entityType)
                     if (e != entity)
-                        if (MathEngine.CircleCollision(e.radius, entity.radius, e.position, entity.position))
+                        if (MathEngine.CircleCollision(e.radius, entity.radius, e.position, entity.position) <= 0)
                             collisionList.Add(e);
 
             return collisionList;
@@ -103,7 +104,7 @@ namespace Proiecto
             foreach (Entity e in updateEList)
                 if (e.entityType == entityType)
                     if (e != entity)
-                        if (MathEngine.CircleCollision(e.radius, entity.radius, e.position, entity.position))
+                        if (MathEngine.CircleCollision(e.radius, entity.radius, e.position, entity.position) <= 0)
                             return e;
             return null;
         }

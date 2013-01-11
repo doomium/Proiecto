@@ -25,14 +25,9 @@ namespace Proiecto
             return (((p1.X - p2.X) * (p1.X - p2.X)) + ((p1.Y - p2.Y) * (p1.Y - p2.Y)));
         }
 
-        static public bool CircleCollision(float r1, float r2, Vector2 p1, Vector2 p2)
+        static public float CircleCollision(float r1, float r2, Vector2 p1, Vector2 p2)
         {
-            float dist = Distance2(p1,p2);
-            if ((dist - (r1*r1) - (r2*r2)) <= 0)
-            {
-                return true;
-            }
-            return false;
+            return Distance2(p1, p2) - (r1 * r1) - (r2 * r2);
         }
     }
 }

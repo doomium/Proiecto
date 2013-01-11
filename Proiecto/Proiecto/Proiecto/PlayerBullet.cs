@@ -81,7 +81,7 @@ namespace Proiecto
 
         public Vector2 drawOrigin
         {
-            get { return new Vector2(3); }
+            get { return new Vector2(2.5f); }
         }
 
         private int Health = 10;
