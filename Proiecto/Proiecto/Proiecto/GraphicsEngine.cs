@@ -74,7 +74,6 @@ namespace Proiecto
         static public void DrawGame(GameTime gameTime)
         {
             gd.SetRenderTarget(rtGameArea);
-
             gd.Clear(Color.Black);
 
             sb.Begin();

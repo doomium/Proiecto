@@ -19,6 +19,11 @@ namespace Proiecto
         static private List<Updateable> updatePAdd;
         static private List<Entity> updateEAdd;
 
+        static public int Count
+        {
+            get { return updateEAdd.Count + updateEList.Count + updatePAdd.Count + updatePList.Count; }
+        }
+
         public enum EntityType
         {
             PlayerBullet,

@@ -11,11 +11,12 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Proiecto
 {
-    class PlayerBullet : Entity, Drawable
+    class EnemyBullet : Entity, Drawable
     {
-        public PlayerBullet(Vector2 Pos)
+        public EnemyBullet(Vector2 Pos,  Vector2 Vel)
         {
             Position = Pos;
+            Velocity = Vel;
             GraphicsEngine.Add(this);
             LogicEngine.AddEntity(this);
         }
@@ -23,6 +24,7 @@ namespace Proiecto
         {
             get { return 3; }
         }
+        private Vector2 Velocity;
         private Vector2 Position;
         public Vector2 position
         {
@@ -31,7 +33,7 @@ namespace Proiecto
 
         public LogicEngine.EntityType entityType
         {
-            get { return LogicEngine.EntityType.PlayerBullet; }
+            get { return LogicEngine.EntityType.EnemyBullet; }
         }
 
         private bool RemoveMe;
@@ -42,15 +44,9 @@ namespace Proiecto
 
         public void Update(GameTime gameTime)
         {
-            Position.Y -= 4;
-            if (Position.Y <= 0 || Health <= 0)
+            Position += Velocity;
+            if (new Rectangle(0,0,370,460).Contains(Position) || Health <= 0)
                 RemoveMe = true;
-            Entity collides = LogicEngine.CheckCollision(this, LogicEngine.EntityType.Enemy);
-            if (collides != null)
-            {
-                collides.health = 0;
-                this.health = 0;
-            }
         }
 
 
@@ -61,7 +57,7 @@ namespace Proiecto
 
         public Color drawColor
         {
-            get { return Color.LimeGreen; }
+            get { return Color.Red; }
         }
 
         public float drawRotation

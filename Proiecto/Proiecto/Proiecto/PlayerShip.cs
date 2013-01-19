@@ -44,7 +44,14 @@ namespace Proiecto
 
         public void Update(GameTime gameTime)
         {
+            if (health == 0)
+            {
+                HUD.Lives -= 1;
+                health = 10;
+            }
+
             float speed = 4;
+
             if (InputEngine.ks.IsKeyDown(Keys.LeftShift))
                 speed = 1.5f;
             if (counter > 0)
@@ -59,8 +66,22 @@ namespace Proiecto
                 Position.Y += speed;
             if (InputEngine.ks.IsKeyDown(Keys.Space) && counter == 0)
             {
-                counter = 20;
+                counter = 8;
                 new PlayerBullet(Position);
+            }
+
+            Entity result = LogicEngine.CheckCollision(this, LogicEngine.EntityType.Enemy);
+            if (result != null  && result.health > 0)
+            {
+                result.health -= 1;
+                health = 0;
+            }
+
+            result = LogicEngine.CheckCollision(this, LogicEngine.EntityType.EnemyBullet);
+            if (result != null && result.health > 0)
+            {
+                result.health -= 1;
+                health = 0;
             }
         }
 
@@ -95,7 +116,7 @@ namespace Proiecto
             get { return new Vector2(3.5f); }
         }
 
-        private int Health = 10;
+        private int Health = 1;
         public int health
         {
             get

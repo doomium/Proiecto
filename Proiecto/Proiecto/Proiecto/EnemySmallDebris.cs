@@ -80,7 +80,7 @@ namespace Proiecto
             get { return new Vector2(7.5f); }
         }
 
-        private int Health = 10;
+        private int Health = 1;
         public int health
         {
             get

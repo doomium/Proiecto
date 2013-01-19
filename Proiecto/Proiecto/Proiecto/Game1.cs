@@ -13,7 +13,11 @@ namespace Proiecto
 {
     public class Game1 : Microsoft.Xna.Framework.Game
     {
-        float counter = 0;
+        public static Game me;
+
+        int counter = 0;
+        float i = 0;
+        float ii = 0;
 
         public Game1()
         {
@@ -21,6 +25,7 @@ namespace Proiecto
             //GraphicsEngine.ChangeResolution(1366, 768, false);
             Content.RootDirectory = "Content";
             this.IsMouseVisible = true;
+            me = this;
         }
 
         protected override void Initialize()
@@ -28,7 +33,7 @@ namespace Proiecto
             base.Initialize();
             GraphicsEngine.Initialize();
             LogicEngine.Initialize();
-            GraphicsEngine.ChangeResolution(640, 480, false);
+            GraphicsEngine.ChangeResolution(640, 480, true);
             new PlayerShip(new Vector2(185, 400));
         }
 
@@ -49,17 +54,30 @@ namespace Proiecto
             InputEngine.UpdateInputMouse();
             InputEngine.UpdateInputKeyboard();
 
+            if (InputEngine.ks.IsKeyDown(Keys.Escape))
+                this.Exit();
+
             HUD.Score++;
 
-            this.Window.Title = FPSCounter.FrameRate.ToString() + " | " + (GraphicsEngine.Count).ToString();
+            //this.Window.Title = FPSCounter.FrameRate.ToString() + " | " + (GraphicsEngine.Count).ToString() + " | " + (LogicEngine.Count).ToString();
+            counter = (++counter % 10);
 
-            counter += 1;
-            counter = counter % 10;
+            i += (float)Math.PI / 300;
+            ii += (float)Math.PI / 800;
             if (counter == 0)
-                new EnemySmallDebris(new Vector2(MathEngine.rng.Next(370),0));
+            {
+                new EnemyBullet(new Vector2(370 / 2, 200) + MathEngine.PolarVector(ii, 100f), MathEngine.PolarVector(i, 4f));
+                new EnemyBullet(new Vector2(370 / 2, 200) + MathEngine.PolarVector(ii, 100f), MathEngine.PolarVector(i + (float)Math.PI, 4f));
 
+                new EnemyBullet(new Vector2(370 / 2, 200) + MathEngine.PolarVector(ii + MathHelper.Pi, 100f), MathEngine.PolarVector(i, 4f));
+                new EnemyBullet(new Vector2(370 / 2, 200) + MathEngine.PolarVector(ii + MathHelper.Pi, 100f), MathEngine.PolarVector(i + (float)Math.PI, 4f));
+            }
+            System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+            sw.Start();
             LogicEngine.UpdateEntities(gameTime);
             LogicEngine.UpdateParticles(gameTime);
+            sw.Stop();
+            Game1.me.Window.Title = sw.ElapsedMilliseconds.ToString();
 
             base.Update(gameTime);
         }
