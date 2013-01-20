@@ -16,8 +16,15 @@ namespace Proiecto
         public static Game me;
 
         int counter = 0;
+
+        int minFPS = 60;
+        int maxDraw = 0;
+        int maxUpdate = 0;
+
         float i = 0;
         float ii = 0;
+
+        Timeline gameTimeline;
 
         public Game1()
         {
@@ -33,7 +40,16 @@ namespace Proiecto
             base.Initialize();
             GraphicsEngine.Initialize();
             LogicEngine.Initialize();
-            GraphicsEngine.ChangeResolution(640, 480, true);
+            GraphicsEngine.ChangeResolution(640, 480, false);
+
+            LinkedList<string[]> protoTimeline = new LinkedList<string[]>();
+            protoTimeline.AddLast(new string[] { "rngEB", "0", "50", "50", "3" });
+            protoTimeline.AddLast(new string[] { "rngEB", "0", "185", "50", "3" });
+            protoTimeline.AddLast(new string[] { "rngEB", "0", "320", "50", "3" });
+            gameTimeline = new Timeline(protoTimeline, true);
+
+
+
             new PlayerShip(new Vector2(185, 400));
         }
 
@@ -56,28 +72,30 @@ namespace Proiecto
 
             if (InputEngine.ks.IsKeyDown(Keys.Escape))
                 this.Exit();
-
+            if (InputEngine.ks.IsKeyDown(Keys.OemTilde))
+            {
+                maxDraw = GraphicsEngine.Count;
+                maxUpdate = LogicEngine.Count;
+                minFPS = FPSCounter.FrameRate;
+            }
             HUD.Score++;
 
-            //this.Window.Title = FPSCounter.FrameRate.ToString() + " | " + (GraphicsEngine.Count).ToString() + " | " + (LogicEngine.Count).ToString();
+            if (maxDraw < GraphicsEngine.Count)
+                maxDraw = GraphicsEngine.Count;
+
+            if (maxUpdate < LogicEngine.Count)
+                maxUpdate = LogicEngine.Count;
+
+            if (minFPS > FPSCounter.FrameRate)
+                minFPS = FPSCounter.FrameRate;
+
+            this.Window.Title = FPSCounter.FrameRate.ToString() + " <> " + (minFPS).ToString() + " | " + (GraphicsEngine.Count).ToString() + " <> " + (maxDraw).ToString() + " | " + (LogicEngine.Count).ToString() + " <> " + (maxUpdate).ToString();
             counter = (++counter % 10);
 
-            i += (float)Math.PI / 300;
-            ii += (float)Math.PI / 800;
-            if (counter == 0)
-            {
-                new EnemyBullet(new Vector2(370 / 2, 200) + MathEngine.PolarVector(ii, 100f), MathEngine.PolarVector(i, 4f));
-                new EnemyBullet(new Vector2(370 / 2, 200) + MathEngine.PolarVector(ii, 100f), MathEngine.PolarVector(i + (float)Math.PI, 4f));
+            gameTimeline.Update(gameTime);
 
-                new EnemyBullet(new Vector2(370 / 2, 200) + MathEngine.PolarVector(ii + MathHelper.Pi, 100f), MathEngine.PolarVector(i, 4f));
-                new EnemyBullet(new Vector2(370 / 2, 200) + MathEngine.PolarVector(ii + MathHelper.Pi, 100f), MathEngine.PolarVector(i + (float)Math.PI, 4f));
-            }
-            System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
-            sw.Start();
             LogicEngine.UpdateEntities(gameTime);
             LogicEngine.UpdateParticles(gameTime);
-            sw.Stop();
-            Game1.me.Window.Title = sw.ElapsedMilliseconds.ToString();
 
             base.Update(gameTime);
         }
