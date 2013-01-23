@@ -42,13 +42,7 @@ namespace Proiecto
             LogicEngine.Initialize();
             GraphicsEngine.ChangeResolution(640, 480, false);
 
-            LinkedList<string[]> protoTimeline = new LinkedList<string[]>();
-            protoTimeline.AddLast(new string[] { "rngEB", "0", "50", "50", "3" });
-            protoTimeline.AddLast(new string[] { "rngEB", "0", "185", "50", "3" });
-            protoTimeline.AddLast(new string[] { "rngEB", "0", "320", "50", "3" });
-            gameTimeline = new Timeline(protoTimeline, true);
-
-
+            gameTimeline = Timeline.FromFile(new System.IO.StreamReader("Content\\gameTimeline.txt"));
 
             new PlayerShip(new Vector2(185, 400));
         }
