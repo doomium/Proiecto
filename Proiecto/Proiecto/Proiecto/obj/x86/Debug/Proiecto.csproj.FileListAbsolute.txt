@@ -31,3 +31,4 @@ P:\Proiecto\Proiecto\Proiecto\Proiecto\obj\x86\Debug\Microsoft.Xna.Framework.Run
 P:\Proiecto\Proiecto\Proiecto\Proiecto\obj\x86\Debug\Proiecto.exe
 P:\Proiecto\Proiecto\Proiecto\Proiecto\obj\x86\Debug\Proiecto.pdb
 P:\Proiecto\Proiecto\Proiecto\Proiecto\bin\x86\Debug\Content\gameTimeline.txt
+P:\Proiecto\Proiecto\Proiecto\Proiecto\bin\x86\Debug\Content\CircleHollow8x8.xnb

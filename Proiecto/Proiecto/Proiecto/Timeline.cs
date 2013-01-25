@@ -62,6 +62,10 @@ namespace Proiecto
                                 new EnemyBullet(new Vector2(Convert.ToSingle(eventNode.Value[2]), Convert.ToSingle(eventNode.Value[3])), new Vector2(Convert.ToSingle(eventNode.Value[4]), Convert.ToSingle(eventNode.Value[5])));
                                 break;
                             }
+                        //case "killBDE":
+                            {
+
+                            }
                     }
                     eventNode = eventNode.Next;
                     time = 0;

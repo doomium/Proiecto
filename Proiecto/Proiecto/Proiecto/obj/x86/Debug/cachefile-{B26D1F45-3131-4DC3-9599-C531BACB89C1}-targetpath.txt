@@ -8,4 +8,5 @@ Content\PowerUpL16x16.xnb
 Content\PowerUpP16x16.xnb
 Content\PowerUpS16x16.xnb
 Content\fontHUD.xnb
+Content\CircleHollow8x8.xnb
 Content\gameTimeline.txt

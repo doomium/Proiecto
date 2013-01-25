@@ -25,6 +25,7 @@ namespace Proiecto
         static public Texture2D texCircle6x6;
         static public Texture2D texSquare8x8;
         static public Texture2D texTriangle8x8;
+        static public Texture2D texCircleHollow8x8;
         static public Texture2D texDebris16x16;
 
         static public SpriteFont fontHUD;
@@ -53,6 +54,7 @@ namespace Proiecto
 
             texGameBackground = cm.Load<Texture2D>("GameBackground");
             texCircle8x8 = cm.Load<Texture2D>("Circle8x8");
+            texCircleHollow8x8 = cm.Load<Texture2D>("CircleHollow8x8");
             texCircle6x6 = cm.Load<Texture2D>("Circle6x6");
             texSquare8x8 = cm.Load<Texture2D>("Square8x8");
             texTriangle8x8 = cm.Load<Texture2D>("Triangle8x8");
