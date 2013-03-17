@@ -62,9 +62,22 @@ namespace Proiecto
                                 new EnemyBullet(new Vector2(Convert.ToSingle(eventNode.Value[2]), Convert.ToSingle(eventNode.Value[3])), new Vector2(Convert.ToSingle(eventNode.Value[4]), Convert.ToSingle(eventNode.Value[5])));
                                 break;
                             }
-                        //case "killBDE":
+                            //killBDE time x y speed kill {xnext ynext timenext}:repeat
+                        case "killBDE":
                             {
-
+                                float speed = Convert.ToSingle(eventNode.Value[4]);
+                                bool kill = Convert.ToBoolean(eventNode.Value[5]);
+                                List<Vector3> places = new List<Vector3>();
+                                places.Add(new Vector3(Convert.ToSingle(eventNode.Value[2]),Convert.ToSingle(eventNode.Value[3]),0));
+                                if (eventNode.Value.Count() > 6)
+                                {
+                                    for(int i = 6; i < eventNode.Value.Count();i+=3)
+                                    {
+                                        places.Add(new Vector3(Convert.ToSingle(eventNode.Value[i]), Convert.ToSingle(eventNode.Value[i + 1]), Convert.ToSingle(eventNode.Value[i + 2])));
+                                    }
+                                }
+                                new BasicDirectedEnemy(places, speed, kill);
+                                break;
                             }
                     }
                     eventNode = eventNode.Next;

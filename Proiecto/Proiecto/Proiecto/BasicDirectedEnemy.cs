@@ -15,7 +15,7 @@ namespace Proiecto
     {
         List<Vector3> Places;
         Vector2 target = new Vector2();
-        float timeAtPlace = -1;
+        float timeAtPlace = 0;
         float speed;
         bool killAtEnd;
 
@@ -25,12 +25,19 @@ namespace Proiecto
             speed = speedtomove;
             killAtEnd = kill;
 
+            Position = new Vector2(Places[0].X, Places[0].Y);
+            Places.RemoveAt(0);
+
+            target = new Vector2(Places[0].X, Places[0].Y);
+            timeAtPlace = Places[0].Z;
+            Places.RemoveAt(0);
+
             GraphicsEngine.Add(this);
             LogicEngine.AddEntity(this);
         }
         public int radius
         {
-            get { return 4; }
+            get { return 6; }
         }
         private Vector2 Position;
         public Vector2 position
@@ -68,17 +75,21 @@ namespace Proiecto
                 {
                     target = new Vector2(Places[0].X, Places[0].Y);
                     timeAtPlace = Places[0].Z;
+                    Places.RemoveAt(0);
                 }
             }
-            else
+            else if (timeAtPlace != -1)
             {
                 if (target == Position)
                 {
                     timeAtPlace -= 1;
+                    if (MathEngine.rng.Next(0,10) == 0)
+                        new EnemyBullet(Position, new Vector2(0, 5) + MathEngine.RandomVector(0.25f));
                 }
                 else
                 {
-                    if (MathEngine.Distance2(target, position) <= 1)
+                    float dist = MathEngine.Distance2(target, position);
+                    if (dist < 0.5f)
                     {
                         target = position;
                     }
@@ -86,7 +97,7 @@ namespace Proiecto
                     {
                         Vector2 vect = target - Position;
                         vect.Normalize();
-                        vect *= speed;
+                        vect *= Math.Min(speed, (float)Math.Sqrt(dist));
                         Position += vect;
                     }
                 }
